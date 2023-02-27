@@ -8,10 +8,10 @@ import Post from '../pages/Post'
 const AppRouter = () => {
   return (
     <div>
-         <BrowserRouter>
-        <Navbar/>
+        <BrowserRouter>
+            <Navbar/>
             <Routes>
-                <Route path='/home' element={<Home/>} />
+                <Route path='' element={<Home/>} />
                 <Route path='/post' element={<Post/>}/>
             </Routes>
         </BrowserRouter>
