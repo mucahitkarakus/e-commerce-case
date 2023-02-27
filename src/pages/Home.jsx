@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <div>
-         <div className='bg-slate-100 mt-10 w-full grid grid-cols-3 ' >
+         <div className='bg-slate-100 w-full grid grid-cols-3   ' >
             <Card/>
             <Card/>
             <Card/>
