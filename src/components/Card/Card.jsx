@@ -14,7 +14,7 @@ const Card = ({item}) => {
     <div className='w-[75%]  m-5 p-5 flex mx-auto cursor-pointer'>
         <div onClick={() => navigate(`/post/${item.id}`, {state: item})}>
             <h2 className='font-bold mb-4'>{item.title}</h2>
-            <p>{item.body}</p>
+            <p>{item?.body?.slice(0,100)}...</p>
         </div>
 
     </div>

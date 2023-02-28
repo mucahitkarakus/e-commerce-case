@@ -4,11 +4,6 @@ import { useLocation } from 'react-router';
 import Card from '../components/Card/Card'
 import {getPost} from "../features/postSlice"
 
-
-
-
-
-
 const Home = ({item}) => {
 
     const {state} = useLocation();
