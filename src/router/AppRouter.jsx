@@ -12,7 +12,7 @@ const AppRouter = () => {
             <Navbar/>
             <Routes>
                 <Route path='/home' element={<Home/>} />
-                <Route path='/post' element={<Post/>}/>
+                <Route path='/post/:id' element={<Post/>}/>
             </Routes>
         </BrowserRouter>
     </div>

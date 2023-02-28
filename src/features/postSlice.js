@@ -12,6 +12,8 @@ export const getPost = createAsyncThunk(
         return fetch(
             `${process.env.REACT_APP_LINK}/posts`
         ).then((res) => res.json())
+        .catch((error) => console.log(error));
+        
     }
 );
 
