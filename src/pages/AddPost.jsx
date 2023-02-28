@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewPost } from '../features/postSlice'
+import { addPost } from '../features/postSlice'
 import Spinner from "../assets/spinner.gif"
 
 const AddPost = () => {
@@ -20,7 +20,7 @@ const AddPost = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addNewPost({ newPost }))
+        dispatch(addPost({ newPost }))
     }
 
     return (
@@ -29,7 +29,7 @@ const AddPost = () => {
                 <label htmlFor='title' className='font-bold text-lg'>Title</label>
                 <input
                     type="text"
-                    className='bg-sky-50 rounded p-4 shadow-md w-full'
+                    className='bg-red-100 rounded p-4 shadow-md w-full'
                     name='title'
                     id='title'
                     value={newPost.title}
@@ -41,7 +41,7 @@ const AddPost = () => {
                     id="detail"
                     cols="30"
                     rows="10"
-                    className='bg-sky-50 rounded p-4 shadow-md w-full'
+                    className='bg-red-100 rounded p-4 shadow-md w-full'
                     value={newPost.detail}
                     onChange={handleChange}
                 ></textarea>
@@ -61,7 +61,7 @@ const AddPost = () => {
                         <img className='block m-auto' src={Spinner} alt="loading-spinner" />
                         :
                         <div
-                            className='bg-sky-100 rounded p-4 shadow-md'
+                            className='bg-red-100 rounded p-4 shadow-md'
 
                         >
                             <h3 className='font-bold pb-4'>{addedPost?.title}</h3>

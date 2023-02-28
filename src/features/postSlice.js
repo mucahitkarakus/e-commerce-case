@@ -7,14 +7,13 @@ export const getPosts = createAsyncThunk(
     const url = `${process.env.REACT_APP_LINK}/posts`
     const response = await fetch(url);
     const data = await response.json()
-    console.log(data)
     return data;
   }
 );
 
 // POST
-export const addNewPost = createAsyncThunk(
-  'posts/addNewPost',
+export const addPost = createAsyncThunk(
+  'posts/addPost',
   async ({ newPost }) => {
     const url = `${process.env.REACT_APP_LINK}/posts/`
     const response = await fetch(url, {
@@ -100,15 +99,15 @@ export const postSlice = createSlice({
       state.loading = false;
     },
     //POST
-    [addNewPost.pending]: (state) => {
+    [addPost.pending]: (state) => {
       state.loading = true
     },
-    [addNewPost.fulfilled]: (state, action) => {
+    [addPost.fulfilled]: (state, action) => {
       state.loading = false;
       state.addedPost = action.payload;
       state.showAddedPost= true
     },
-    [addNewPost.rejected]: (state) => {
+    [addPost.rejected]: (state) => {
       state.loading = false;
     },
     //UPDATE
@@ -129,7 +128,7 @@ export const postSlice = createSlice({
     },
     [deletePost.fulfilled]: (state) => {
       state.loading = false;
-      state.deleteText = 'Post deleted'
+      state.deleteText = 'Post Slindi'
     },
     [deletePost.rejected]: (state) => {
       state.loading = false;

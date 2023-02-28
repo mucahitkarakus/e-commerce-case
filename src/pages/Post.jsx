@@ -68,7 +68,7 @@ const Post = () => {
     <section className='container bg-white mt-4 mx-auto p-5 shadow-md flex gap-6'>
       <aside>
         <button
-          className='bg-sky-100 hover:bg-sky-200 rounded-full p-2'
+          className='bg-red-100 hover:bg-sky-200 rounded-full p-2'
           onClick={() => navigate('/')}
         >
           <BsArrowLeft size={30} className='' />
@@ -78,7 +78,7 @@ const Post = () => {
         <div className="detail-top flex justify-between">
           <h3 className='font-bold text-2xl'>Posts</h3>
           <button
-            className='rounded-lg bg-sky-500 text-white px-3 py-2 hover:bg-sky-700'
+            className='rounded-lg bg-sky-500 text-white px-3 py-2 hover:bg-red-700'
             onClick={() => navigate('/newpost')}
           >
             + New Post
@@ -86,7 +86,7 @@ const Post = () => {
         </div>
         <h4 className='font-bold text-lg'>Title</h4>
         <div
-          className='bg-sky-50 rounded p-4 shadow-md cursor-pointer'
+          className='bg-red-100 rounded p-4 shadow-md cursor-pointer'
           onClick={() => dispatch(changeEdit(true))}
         >
           {
@@ -95,7 +95,7 @@ const Post = () => {
               <p className='font-bold text-xl'>{post?.title}</p>
               :
               <textarea
-                className=' text-xl w-full bg-sky-50'
+                className=' text-xl w-full bg-red-50'
                 cols="30"
                 rows="3"
                 value={updateText.title}
@@ -106,7 +106,7 @@ const Post = () => {
         </div>
         <h4 className='font-bold text-lg'>Detail</h4>
         <div
-          className='bg-sky-50 rounded p-4 shadow-md cursor-pointer'
+          className='bg-red-100 rounded p-4 shadow-md cursor-pointer'
           onClick={() => dispatch(changeEdit(true))}
         >
           {
@@ -115,7 +115,7 @@ const Post = () => {
               <p className=' text-xl'>{post?.body}</p>
               :
               <textarea
-                className=' text-xl w-full bg-sky-50'
+                className=' text-xl w-full bg-red-50'
                 cols="30"
                 rows="5"
                 value={updateText.body}
@@ -126,11 +126,11 @@ const Post = () => {
         </div>
 
         <div className="btn-container flex justify-end gap-10 mt-8">
-          <div className='bg-green-700 rounded-md  text-white flex items-center'>
+          <div className='bg-red-700 rounded-md  text-white flex items-center'>
             {
               loading
                 ?
-                <img className="block m-auto w-6 h-6" src={spinner} alt="loading-spinner" />
+                <img className="block m-auto w-4 h-4" src={spinner}  alt="loading-spinner" />
                 :
                 deleteText && <p className='mx-3 flex gap-2'>
                   {deleteText}
@@ -152,11 +152,11 @@ const Post = () => {
             onClick={handleUpdate}
           >
             <MdOutlineModeEditOutline />
-            Update</button>
+            Upgrade</button>
         </div>
         {
           showUpdated &&
-          <div className='m-auto mt-3 w-full'>
+          <div className='m-auto mt-8 w-full'>
             {
               loading
                 ?
@@ -176,7 +176,7 @@ const Post = () => {
       </article>
     </section>
     <section className='container bg-white mx-auto p-5 shadow-md'>
-      <h2 className='md:w-9/12 xl:w-1/2  mt-3 ml-16 font-bold'>Comments</h2>
+      <h2 className='md:w-9/12 xl:w-1/2  mt-3 ml-16'>Comments</h2>
         {
           comments?.map((comment,index)=><Comments key={index} {...comment}/>)
         }

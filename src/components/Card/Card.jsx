@@ -2,11 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router';
 
 
-const Card = ({id,title,body,userId}) => {
+const Card = ({id,title,body}) => {
   const navigate = useNavigate()
   return (
     <div 
-    className='bg-red-100 rounded p-4 shadow-md hover:bg-sky-200 cursor-pointer'
+    className='bg-red-100 rounded p-4 shadow-md hover:bg-red-200 cursor-pointer'
     onClick={()=>navigate(`/details/${id}`)}
     >
       <h3 className='font-bold pb-4'>{title}</h3>

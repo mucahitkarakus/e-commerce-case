@@ -22,7 +22,7 @@ const Home = () => {
             <img className="block m-auto" src={Spinner} alt="loading-spinner" />
           </main>
           :
-          <main className='container bg-white mt-4 mx-auto p-5 shadow-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5' >
+          <main className='container bg-white mt-8 mx-auto p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4' >
             {
               posts.map((post,index)=><Card key={index} {...post}/>)
             }

@@ -24,7 +24,7 @@ const Navbar = () => {
         onClick={()=> navigate('/')}
         >
           Posts
-          <span className='absolute rounded-full bg-teal-200 text-base left-11 bottom-6 w-5 h-5 flex justify-center items-center'>{myPosts}</span>
+          <span className='absolute rounded-full bg-red-200 text-base left-11 bottom-6 w-5 h-5 flex justify-center items-center'>{myPosts}</span>
           </h3>
         <IoMdNotifications size={25} className='cursor-pointer'/>
         <AiTwotoneAppstore size={25} className='cursor-pointer'/>
