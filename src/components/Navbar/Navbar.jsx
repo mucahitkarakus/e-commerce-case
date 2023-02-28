@@ -5,7 +5,7 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 
 const Navbar = () => {
   return (
-   <div className='bg-slate-100 h-12 m-8 '>
+   <div className='bg-slate-100 h-12 m-8  '>
         <div className='flex items-center justify-between m-6 '>
             <div className='flex'> 
             <AiTwotonePlayCircle className='w-8 h-8 mr-5' />
