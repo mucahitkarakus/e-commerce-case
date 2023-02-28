@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const getPosts = createAsyncThunk(
   'posts/getPosts',
   async () => {
-    const url = `https://jsonplaceholder.typicode.com/posts`
+    const url = `${process.env.REACT_APP_LINK}/posts`
     const response = await fetch(url);
     const data = await response.json()
     console.log(data)
@@ -16,7 +16,7 @@ export const getPosts = createAsyncThunk(
 export const addNewPost = createAsyncThunk(
   'posts/addNewPost',
   async ({ newPost }) => {
-    const url = `https://jsonplaceholder.typicode.com/posts/`
+    const url = `${process.env.REACT_APP_LINK}/posts/`
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -36,7 +36,7 @@ export const addNewPost = createAsyncThunk(
 export const updatePost = createAsyncThunk(
   'posts/updatePost',
   async ({ id, title, body }) => {
-    const url = `https://jsonplaceholder.typicode.com/posts/${id}`
+    const url = `${process.env.REACT_APP_LINK}/posts/${id}`
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -59,7 +59,7 @@ export const updatePost = createAsyncThunk(
 export const deletePost = createAsyncThunk(
   'posts/deletePost',
   async ({ id }) => {
-    const url = `https://jsonplaceholder.typicode.com/posts/${id}`
+    const url = `${process.env.REACT_APP_LINK}/posts/${id}`
     const response = await fetch(url, {
       method: "DELETE"
     });

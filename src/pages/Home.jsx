@@ -1,34 +1,35 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { getPosts } from '../features/postSlice';
 import Card from '../components/Card/Card'
-import {getPost} from "../features/postSlice"
+import Spinner from "../assets/spinner.gif"
+
 
 const Home = () => {
+  const { posts, loading } = useSelector(state => state.posts)
+  const dispatch = useDispatch()
 
-    const {state} = useLocation();
-
-    const dispatch = useDispatch();
-
-    const post = useSelector((state) => state?.posts?.item)
-
-    useEffect(() => {
-    dispatch(getPost(state?.name))
-    }, [dispatch, state?.name])
-
-
+  useEffect(() => {
+    dispatch(getPosts())
+  }, [dispatch])
 
   return (
-    
-
-
-    <div>
-         <div className='bg-slate-100 grid grid-cols-3 m-10' >
-           {post?.map((item, idx) => (
-             <Card item={item} key={idx} /> 
-           ))}
-         </div>
-    </div>
+    <>
+      {
+        loading
+          ?
+          <main className="container bg-white mt-4 mx-auto p-5 shadow-md ">
+            <img className="block m-auto" src={Spinner} alt="loading-spinner" />
+          </main>
+          :
+          <main className='container bg-white mt-4 mx-auto p-5 shadow-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5' >
+            {
+              posts.map((post,index)=><Card key={index} {...post}/>)
+            }
+           
+          </main>
+      }
+    </>
   )
 }
 
