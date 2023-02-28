@@ -1,8 +1,23 @@
-import React from 'react'
-import { useNavigate } from 'react-router'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router';
 
-const Card = ({item}) => {
+import { getPost } from '../../features/postSlice'
+
+const Card = () => {
     const navigate = useNavigate();
+    
+  const {state} = useLocation();
+
+  const dispatch = useDispatch();
+
+  const post = useSelector((state) => state?.posts?.item)
+  console.log(post);
+
+  useEffect(() => {
+    dispatch(getPost(state?.name))
+  }, [dispatch, state?.name])
+  
   return (
 
     <div className='w-[75%] m-5 p-5 flex mx-auto cursor-pointer'>

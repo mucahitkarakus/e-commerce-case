@@ -1,25 +1,12 @@
 import React, { useEffect } from 'react'
 import Card from '../components/Card/Card'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router'
 
-import { getPost } from '../features/postSlice'
+
 
 
 const Home = () => {
 
-  const {state} = useLocation();
-
-  const dispatch = useDispatch();
-
-  const post = useSelector((state) => state?.posts)
-  console.log(post);
-
-  useEffect(() => {
-    dispatch(getPost(state?.name))
-  }, [dispatch, state?.name])
-  
 
 
 
