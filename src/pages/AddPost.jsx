@@ -23,7 +23,7 @@ const AddPost = () => {
     }
     
     return (
-    <section className='container bg-white mt-4 mx-auto p-5 shadow-md'>
+    <section className='  bg-white mt-4 m-10 p-5 shadow-md'>
             <form onSubmit={handleSubmit} className='m-auto md:w-1/2'>
                 <label htmlFor='title' className='font-bold text-lg'>Title</label>
                 <input
