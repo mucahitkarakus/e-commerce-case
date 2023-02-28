@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 
-const Card = () => {
+const Card = ({item}) => {
     const navigate = useNavigate();
   return (
 

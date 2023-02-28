@@ -25,14 +25,14 @@ export const postSlice = createSlice({
     builder.addCase(getPost.fulfilled, (state, action) => {
       state.loading = false;
       state.error = "";
-      state.album = action.payload;
+      state.item = action.payload;
     });
     builder.addCase(getPost.rejected, (state) => {
       state.loading = false;
-      state.album = [];
+      state.item = [];
       state.error = "Yüklenemedi";
     });
   },
 })
 
-export default CardBodySlice.reducer;
+export default postSlice.reducer;
