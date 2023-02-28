@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <div>
-         <div className='bg-slate-100 w-full grid grid-cols-3   ' >
+         <div className='bg-slate-100 w-full grid grid-cols-3 m-8   ' >
             <Card/>
             <Card/>
             <Card/>
@@ -13,6 +13,9 @@ const Home = () => {
             <Card/>
             <Card/>
             <Card/>
+            <Card/>
+            <Card/>
+
          </div>
     </div>
   )
