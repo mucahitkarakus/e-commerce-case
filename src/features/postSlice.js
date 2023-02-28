@@ -7,7 +7,8 @@ const initialState = {
 }
 
 export const getPost = createAsyncThunk(
-    "post/getPost", async () => {
+    "post/getPost",
+    async () => {
         return fetch(
             `${process.env.REACT_APP_LINK}/posts`
         ).then((res) => res.json())
