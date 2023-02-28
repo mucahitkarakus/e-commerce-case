@@ -7,15 +7,16 @@ const initialState = {
 }
 
 export const getPost = createAsyncThunk(
-    "item/getPost", async () => {
+    "post/getPost", async () => {
         return fetch(
             `${process.env.REACT_APP_LINK}/posts`
         ).then((res) => res.json())
     }
 );
 
+
 export const postSlice = createSlice({
-    name: "item",
+    name: "post",
     initialState,
     reducers: {},
    extraReducers: (builder) => {
