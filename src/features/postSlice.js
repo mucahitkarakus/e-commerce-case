@@ -1,157 +1,141 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-//GetPost
-
-
-export const getPost = createAsyncThunk(
-    "post/getPost",
-    async () => {
-       const url = `${process.env.REACT_APP_LINK}/posts`
-      const response = await fetch(url)
-      const data = await response.json();
-      return data
-    }
+// GET
+export const getPosts = createAsyncThunk(
+  'posts/getPosts',
+  async () => {
+    const url = `https://jsonplaceholder.typicode.com/posts`
+    const response = await fetch(url);
+    const data = await response.json()
+    console.log(data)
+    return data;
+  }
 );
 
-
-//Post
-
-export const addPost = createAsyncThunk(
-  "post/addPost",
-  async ({newPost}) => {
-    const url = `${process.env.REACT_APP_LINK}/posts/`
+// POST
+export const addNewPost = createAsyncThunk(
+  'posts/addNewPost',
+  async ({ newPost }) => {
+    const url = `https://jsonplaceholder.typicode.com/posts/`
     const response = await fetch(url, {
       method: "POST",
-      header : {
-        "Content-type" : "application/json"
+      headers: {
+        "Content-type": "application/json"
       },
-      body : JSON.stringify({
-        title : newPost.title,
-        body : newPost.detail,
-        userId : 1
+      body: JSON.stringify({
+        title: newPost.title,
+        body: newPost.detail,
+        userId: 1
       })
     });
     const data = await response.json()
     return data;
-   }
-)
-
-
-
-//Update
-
-export const updatePost = createAsyncThunk  (
-  "post/updatePost",
-  async ({id, title, body}) => {
-    const url = `${process.env.REACT_APP_LINK}/posts/${id}`
-    const response = await fetch (url, {
+  }
+);
+//PUT
+export const updatePost = createAsyncThunk(
+  'posts/updatePost',
+  async ({ id, title, body }) => {
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}`
+    const response = await fetch(url, {
       method: "PUT",
-      headers : {
-        "Content-type" : "aplication/json"
+      headers: {
+        "Content-type": "application/json"
       },
-      body:JSON.stringify({
-        id : id,
+      body: JSON.stringify({
+        id: id,
         title: title,
-        body : body ,
-        userId : 1
+        body: body,
+        userId: 1
       })
     });
     const data = await response.json()
-    return data
+    console.log(data);
+    return data;
   }
 );
 
-//Delete
-
-export const deletePost = createAsyncThunk (
-  "post/deletePost",
-  async ({id}) => {
-    const url = `${process.env.REACT_APP_LINK}/posts/${id}`
-    const response = await fetch (url, {
+//DELETE
+export const deletePost = createAsyncThunk(
+  'posts/deletePost',
+  async ({ id }) => {
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}`
+    const response = await fetch(url, {
       method: "DELETE"
     });
     const data = await response.json()
-    return data
+    return data;
   }
 );
 
-
 const initialState = {
-    post: [],
-    addPost : {},
-    updatePost : {},
-    deletePost : "",
-    loading: false,
-    isEdit : false,
-    showUpdated:false,
-    showAddedPost:false
-}
-
+  posts: [],
+  addedPost: {},
+  updatedPost: {},
+  deleteText: '',
+  loading: false,
+  isEdit: false,
+  showUpdated:false,
+  showAddedPost:false
+};
 
 export const postSlice = createSlice({
-    name: "post",
-    initialState,
-    reducers: {
+  name: 'posts',
+  initialState,
+  reducers: {
     removeDeleteText: (state) => { state.deleteText = '' },
     changeEdit: (state,action) => {state.isEdit = action.payload}
+  },
+
+  extraReducers: {
+    //GET
+    [getPosts.pending]: (state) => {
+      state.loading = true
     },
-   extraReducers:(builder) => {
-    //GetPost
-     builder.addCase(getPost.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(getPost.fulfilled, (state, action) => {
+    [getPosts.fulfilled]: (state, action) => {
       state.loading = false;
-      state.error = "";
-      state.item = action.payload;
-    });
-    builder.addCase(getPost.rejected, (state) => {
+      state.posts = action.payload
+    },
+    [getPosts.rejected]: (state) => {
       state.loading = false;
-      state.item = [];
-      state.error = "Yüklenemedi";
-    });
-    //NewPost
-    builder.addCase(addPost.pending, (state) => {
-    state.loading = true;
-    });
-    builder.addCase(addPost.fulfilled, (state, action) => {
-      state.addPost = action.payload;
+    },
+    //POST
+    [addNewPost.pending]: (state) => {
+      state.loading = true
+    },
+    [addNewPost.fulfilled]: (state, action) => {
       state.loading = false;
+      state.addedPost = action.payload;
       state.showAddedPost= true
-    });
-    builder.addCase(addPost.rejected, (state) => {
+    },
+    [addNewPost.rejected]: (state) => {
       state.loading = false;
-   },
-   //Update
-
-   builder.addCase(updatePost.pending, (state) => {
-    state.loading = true
-   }),
-   builder.addCase(updatePost.fulfilled, (state, action) => {
-    state.loading = false;
-    state.updatePost = action.payload
-    state.showUpdated = true
-   }),
-    builder.addCase(updatePost.rejected, (state) => {
-    state.loading = false
-   }),
-   
-   //DELETE
-
-   builder.addCase(deletePost.pending, (state) => {
-    state.loading = true 
-   }),
-
-   builder.addCase(deletePost.fulfilled, (state) => {
-    state.loading = false
-    state.deletePost = "Post Silindi.."
-   }),
-
-   builder.addCase(deletePost.rejected, (state) => {
-    state.loading = false
-   })
-
-)}})
+    },
+    //UPDATE
+    [updatePost.pending]: (state) => {
+      state.loading = true
+    },
+    [updatePost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.updatedPost = action.payload
+      state.showUpdated = true
+    },
+    [updatePost.rejected]: (state) => {
+      state.loading = false;
+    },
+    //DELETE
+    [deletePost.pending]: (state) => {
+      state.loading = true
+    },
+    [deletePost.fulfilled]: (state) => {
+      state.loading = false;
+      state.deleteText = 'Post deleted'
+    },
+    [deletePost.rejected]: (state) => {
+      state.loading = false;
+    }
+  },
+});
 
 export const { removeDeleteText,changeEdit } = postSlice.actions;
 

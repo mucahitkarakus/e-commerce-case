@@ -1,5 +1,5 @@
 import React from 'react'
-import { AiTwotonePlayCircle, AiTwotoneAppstore } from 'react-icons/ai'
+import { AiTwotoneAppstore } from 'react-icons/ai'
 import { IoMdNotifications } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
@@ -7,26 +7,30 @@ import { useNavigate } from 'react-router'
 
 const Navbar = () => {
 
-  const navigate = useNavigate();
-
-   const {posts} = useSelector(state => state.posts)
-
-
+ const {posts} = useSelector(state => state.posts)
+  const myPosts = posts.filter((post)=> post.userId === 1).length
+  const navigate = useNavigate()
   return (
-   <div className='bg-slate-100 h-12 m-10   '>
-        <div className='flex items-center justify-between m-6 '>
-            <div className='flex justify-start items-center mt-2'> 
-            <AiTwotonePlayCircle className='w-8 h-8 mr-5' />
-            <h2 className='cursor-pointer' onClick={() => navigate("/")}>Arbit Blog</h2>
-            </div>
-        <div className='flex justify-start items-center mt-2'> 
-            <button onClick={() => navigate("/")} className='mr-5'>Posts</button>
-            <IoMdNotifications  className='cursor-pointer mr-5' size={25} />
-            <AiTwotoneAppstore className='cursor-pointer mr-5' size={25} />
-            <img src="https://imgs.search.brave.com/lRriKfKIzH4MtRngWNqkXn2bfnax3VMC72vrtew3N2E/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5X/LUpwbnNzc0dieFZa/U01LUy0tZk5RSGFF/OCZwaWQ9QXBp" alt="img" className='w-8 h-8 rounded-full' />
-        </div>
-        </div>
-    </div>
+    <header className='bg-white container shadow-md m-auto mt-8 p-5 flex justify-between items-center'>
+      <h1 
+      className='text-3xl font-bold cursor-pointer' 
+      onClick={()=> navigate('/')}
+      >
+        Arbit Blog
+        </h1>
+      <nav className='flex gap-4 items-center'>
+        <h3 
+        className='text-2xl font-semibold relative cursor-pointer'
+        onClick={()=> navigate('/')}
+        >
+          Posts
+          <span className='absolute rounded-full bg-teal-200 text-base left-11 bottom-6 w-5 h-5 flex justify-center items-center'>{myPosts}</span>
+          </h3>
+        <IoMdNotifications size={25} className='cursor-pointer'/>
+        <AiTwotoneAppstore size={25} className='cursor-pointer'/>
+        <img className='rounded-full  cursor-pointer w-10 h-10' src="https://imgs.search.brave.com/_BK9g-Eag6_Jib_7hjsEj1ZBuPw22RFZ9nYs_zmd2YE/rs:fit:337:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5Q/VHpDN1VkZWtnM3NR/Z3lrdWZJdjRRQUFB/QSZwaWQ9QXBp" alt="profile" />
+      </nav>
+    </header>
   )
 }
 
