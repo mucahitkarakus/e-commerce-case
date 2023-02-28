@@ -1,14 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import { useLocation, useNavigate } from 'react-router';
+
+
 import {AiFillDelete} from "react-icons/ai"
 import {GoPencil} from "react-icons/go"
-import {MdKeyboardReturn} from "react-icons/md"
+import { useDispatch, useSelector } from 'react-redux';
 
-const Detail = () => {
-
+const Detail = ({item}) => {
+    
     const navigate = useNavigate();
-
+    
+    const dispatch = useDispatch();
+    
     const {state} = useLocation();
+    
+    const { post, deletePost, loading, isEdit, updatePost, showUpdated } = useSelector(state => state.posts);
+
+    const [comments,setComments] = useState([]);
+
+    const getComments = async () => {
+        const url = `${process.env.REACT_APP_LINK}/posts/${item.id}/comments`
+        const response = await fetch(url)
+        const data = await response.json()
+        setComments(data)
+    }
+
+    const [updateText, setUpdateText] = useState({
+    title: item?.title,
+    body: item?.body
+    })
+
+    const handleDelete = () => {
+    dispatch(deletePost({ id: item?.id }))
+    }
+
+    const handleUpdate = () => {
+    dispatch(updatePost({
+      id: item?.id,
+      title: updateText.title,
+      body: updateText.body
+    }))}
+
+    const handleChange = (e) => {
+    setUpdateText({
+      ...updateText,
+      [e.target.name]: e.target.value
+    })
+    }
+
+
 
   return (
       <div className=''>

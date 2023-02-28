@@ -4,15 +4,13 @@ import { useLocation } from 'react-router';
 import Card from '../components/Card/Card'
 import {getPost} from "../features/postSlice"
 
-const Home = ({item}) => {
+const Home = () => {
 
     const {state} = useLocation();
 
     const dispatch = useDispatch();
 
     const post = useSelector((state) => state?.posts?.item)
-
-    console.log(post);
 
     useEffect(() => {
     dispatch(getPost(state?.name))

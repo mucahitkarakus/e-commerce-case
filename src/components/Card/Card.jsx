@@ -11,7 +11,7 @@ const Card = ({item}) => {
   
   return (
 
-    <div className='w-[75%]  m-5 p-5 flex mx-auto cursor-pointer'>
+    <div  className='bg-sky-100 rounded p-4 shadow-md hover:bg-sky-200 cursor-pointer'>
         <div onClick={() => navigate(`/post/${item.id}`, {state: item})}>
             <h2 className='font-bold mb-4'>{item.title}</h2>
             <p>{item?.body?.slice(0,100)}...</p>
