@@ -36,6 +36,7 @@ const Post = () => {
 
   const handleDelete = () => {
     dispatch(deletePost({ id: post.id }))
+    window.location.reload()
   }
 
   const handleUpdate = () => {
@@ -65,7 +66,7 @@ const Post = () => {
 
   return (
     <>
-    <section className='container bg-white mt-4 mx-auto p-5 shadow-md flex gap-6'>
+    <section className='container bg-white mt-4 mx-auto p-5 shadow-md flex gap-6 '>
       <aside>
         <button
           className='bg-red-100 hover:bg-sky-200 rounded-full p-2'
@@ -86,7 +87,7 @@ const Post = () => {
         </div>
         <h4 className='font-bold text-lg'>Title</h4>
         <div
-          className='bg-red-100 rounded p-4 shadow-md cursor-pointer'
+          className='bg-red-100 rounded p-4 shadow-md cursor-pointer '
           onClick={() => dispatch(changeEdit(true))}
         >
           {

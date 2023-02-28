@@ -11,7 +11,7 @@ const Navbar = () => {
   const myPosts = posts.filter((post)=> post.userId === 1).length
   const navigate = useNavigate()
   return (
-    <header className='bg-white container shadow-md m-auto mt-8 p-5 flex justify-between items-center'>
+    <header className='bg-white container shadow-md m-auto mt-8 p-5 flex justify-between items-center '>
       <h1 
       className='text-3xl font-bold cursor-pointer' 
       onClick={()=> navigate('/')}
