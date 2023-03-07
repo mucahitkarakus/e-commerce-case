@@ -86,54 +86,53 @@ export const postSlice = createSlice({
     changeEdit: (state,action) => {state.isEdit = action.payload}
   },
 
-  extraReducers: (builder) => {
-    //GET POST
-     builder.addCase(getPosts.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(getPosts.fulfilled, (state, action) => {
-       state.item = [];
-      state.error = "Yüklenemedi";
-    });
-    //NewPost
-    builder.addCase(addPost.pending, (state) => {
-    state.loading = true;
-    });
-    builder.addCase(addPost.fulfilled, (state, action) => {
+  extraReducers: {
+    //GET
+    [getPosts.pending]: (state) => {
+      state.loading = true
+    },
+    [getPosts.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.posts = action.payload
+    },
+    [getPosts.rejected]: (state) => {
+      state.loading = false;
+    },
+    //POST
+    [addPost.pending]: (state) => {
+      state.loading = true
+    },
+    [addPost.fulfilled]: (state, action) => {
+      state.loading = false;
       state.addedPost = action.payload;
-      state.loading = false;
       state.showAddedPost= true
-    });
-    builder.addCase(addPost.rejected, (state) => {
+    },
+    [addPost.rejected]: (state) => {
       state.loading = false;
-   },
-   //Update
-    builder.addCase(updatePost.pending, (state) => {
-    state.loading = true
-   }),
-   builder.addCase(updatePost.fulfilled, (state, action) => {
-    state.loading = false;
-    state.updatedPost = action.payload
-    state.showUpdated = true
-   }),
-    builder.addCase(updatePost.rejected, (state) => {
-    state.loading = false
-   }),
-
-   //DELETE
-
-   builder.addCase(deletePost.pending, (state) => {
-    state.loading = true 
-   }),
-
-   builder.addCase(deletePost.fulfilled, (state) => {
-    state.loading = false
-    state.deleteText = "Post Silindi.."
-   }),
-
-   builder.addCase(deletePost.rejected, (state) => {
-    state.loading = false
-   })
+    },
+    //UPDATE
+    [updatePost.pending]: (state) => {
+      state.loading = true
+    },
+    [updatePost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.updatedPost = action.payload
+      state.showUpdated = true
+    },
+    [updatePost.rejected]: (state) => {
+      state.loading = false;
+    },
+    //DELETE
+    [deletePost.pending]: (state) => {
+      state.loading = true
+    },
+    [deletePost.fulfilled]: (state) => {
+      state.loading = false;
+      state.deleteText = 'Post Slindi'
+    },
+    [deletePost.rejected]: (state) => {
+      state.loading = false;
+    }
   },
 });
 
